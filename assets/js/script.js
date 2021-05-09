@@ -1,41 +1,23 @@
-var body = document.body;
+var root = document.getElementById('root');
+var timerEl = document.getElementById('timer');
+var highscoresEl = document.getElementById('highscores');
+// var headerEl = document.querySelector('.header');
+// Main body elements
+var quizDiv = document.createElement('div');
+var h1El = document.createElement('h1');
+var infoEl = document.createElement('p');
+var startBtnEl = document.createElement('button');
 
-//CREATE ELEMENTS
-    // - header to hold Highscores and Time countdown
-    // - div to hold coding challenge quiz
-        // - h1 : Coding Quiz Challenge
-        // - p : Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your screentime by ten seconds!
-        // - button : start quiz
-    // - div to hold quest1
-        // - h2 : Commonly used data types DO NOT include:
-        // - ul : 
-        // - li : 1. Strings 2. Booleans 3. Alerts 4. Numbers
-            // answer 3 alerts
-        // - border with wrong/correct underneath?
-    // - quest2
-        // - h2 : The condition in an if/else statement is enclosed within _______.
-        // - ul : 
-        // - li : 1. Quotes 2. Curly Brackets 3. Parentheses 4. Square Brackets
-            // answer: 3 parentheses
-        // - border with wrong/correct underneath?
-    // - quest3
-        // - h2 : Arrays in JavaScript can be used to store _______.
-        // - ul : 
-        // - li : 1. Numbers and strings 2. Other Arrays 3. Booleans 4. All of the above
-            // answer: 4 All of above
-        // - border with wrong/correct underneath?
-    // - quest4
-        // - h2 : String values must be enclosed within _______ when being assigned to variables.
-        // - ul : 
-        // - li : 1. Commas 2. Curly Brackets 3. Quotes 4. Parentheses
-            // answer: 3 quotes
-        // - border with wrong/correct underneath?
-    // - quest5
-        // - h2 : A very useful tool used during development and debugging for printing content to the debugger is:
-        // - ul : 
-        // - li : 1. JavaScript 2. Terminal/Bash 3. For loops 4. Console.log
-            // answer: 3 quotes
-        // - border with wrong/correct underneath?
+
+//array of questions to loop through
+var questions = [
+    `{ q1: "Commonly used data types DO NOT include:", a1: "1. Strings", a2: "2. Booleans", a3: "3. Alerts", a4: "Numbers" }`, //answer: 3. alerts
+    `{ q2: "The condition in an if/else statement is enclosed within _______.", a1: "1. Quotes", a2: "2. Curly Brackets", a3: "3. Parentheses", a4: "Square Brackets" }`, //3 parentheses
+    `{ q3: "Arrays in JavaScript can be used to store _______.", a1: "1. Numbers and strings", a2: "2. Other Arrays", a3: "3. Booleans", a4: "All of the Above" }`, // 4 all above
+    `{ q4: "String values must be enclosed within _______ when being assigned to variables.", a1: "1. Commas", a2: "2. Curly Brackets", a3: "3. Quotes", a4: "Parentheses" }`, //3 quotes
+    `{ q5: "A very useful tool used during development and debugging for printing content to the debugger is:", a1: "1. JavaScript", a2: "2. Terminal/Bash", a3: "3. For Loops", a4: "Console.log" }`, //4 console.log
+];
+// - border with wrong/correct underneath?
     
     // - div for all done 
         // - h3 : All done!
@@ -49,86 +31,57 @@ var body = document.body;
         // - button : go back
         // - button : Clear Highscores
 
-//HEADER ELEMENTS
-var headerEl= document.createElement('header');
-var highScoreEl = document.createElement('p');
-var timeEl = document.createElement('p');
-// Main body elements
-var questionsEl = document.createElement('div');
-var h1El = document.createElement('h1');
-var infoEl = document.createElement('p');
-var startBtnEl = document.createElement('button');
-
-
 // TEXT/content
-//header text content
-highScoreEl.textContent = 'View High Scores';
-timeEl.textContent = 'Time: ' + timeCounter();
 // Main body Text
 h1El.textContent = 'Coding Quiz Challenge';
 infoEl.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your screentime by ten seconds!';
 startBtnEl.textContent = 'Start Quiz';
 
 
+
 //SET ELEMENT ATTRIBUTES
-body.setAttribute('style', 'font-family: Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif');
-//header attributes
-headerEl.setAttribute('style', 'display: flex; justify-content: space-between; font-size: 16px; padding-right:5px;');
-highScoreEl.setAttribute('id', 'highscore') // HIGHSCORE ID
-timeEl.setAttribute('style', 'font-weight: bold');
-timeEl.setAttribute('id', 'timeCounter'); // TIMER ID
 //Main body attributes
-questionsEl.setAttribute('style', 'margin: auto; width: 60%; text-align: center');
+quizDiv.setAttribute('style', 'margin: auto; width: 60%; text-align: center');
+quizDiv.className = 'quizDiv'; // QUIZ STARTING PAGE ID
 h1El.setAttribute('style', 'font-size: 28px;');
 infoEl.setAttribute('style', 'font-size: 24;');
 startBtnEl.setAttribute('style', 'background-color: purple; color: #fff;');
-startBtnEl.setAttribute('id', 'startBtn'); // START BUTTON ID
+startBtnEl.className = 'startBtn'; // START BUTTON ID
+
 
 
 //APPEND ELEMENTS
-//header append elements
-body.appendChild(headerEl);
-headerEl.appendChild(highScoreEl);
-headerEl.appendChild(timeEl);
 //main append
-body.appendChild(questionsEl);
-questionsEl.appendChild(h1El);
-questionsEl.appendChild(infoEl);
-questionsEl.appendChild(startBtnEl);
+root.appendChild(quizDiv);
+quizDiv.appendChild(h1El);
+quizDiv.appendChild(infoEl);
+quizDiv.appendChild(startBtnEl);
 
-
-/*
-//Get element by ID - DO I NEED TO GET ELEMENTS IF I'VE MADE THEM IN THIS SCRIPT?
-var startBtnEl = document.getElementById('startBtn');
-var timeEl = document.getElementById('timeCounter');
-var highScoreEl = document.getElementById('highscore');
-*/
 
 
 // TODO: When click start button, timer starts and question is presented
-// function for timer to countdown
-function timeCounter() {
-    var timeLeft = 10;
-
-    //time interval for countdown
-    var timeInterval = setInterval(function() {
+var timeInterval;
+var timeLeft = 75;
+// timer countdown function
+startBtnEl.addEventListener('click', function() {
+    timeInterval = setInterval(function() {
         if(timeLeft > 0) {
-            timeEl.textContent = 'Time ' + timeLeft;
+            timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--; 
         }
         else {
-            timeEl.textContent = 'Time 0';
+            timerEl.textContent = 'Time: ' + timeLeft;
             clearInterval(timeInterval);
         }    
     }, 1000);
-}
+});
 
 // TODO: When answer question, presented with another question
+function quizQuestions() {
+
+}
 // TODO: If question answered wrong, time subtracted from clock
 
 // TODO: When timer at 0 or questions answered, game over
 
 // TODO: When game over, save initials and score
-
-//EVENT LISTENERS -- where in order should this go? THIS DOESN'T SEEM TO BE LINKING TO MY TIMECOUNTER; TIMER GOES AUTOMATICALLY
-startBtnEl.addEventListener('click', timeCounter);
