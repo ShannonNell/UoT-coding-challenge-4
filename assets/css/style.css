@@ -14,3 +14,22 @@
     font-size: 16px; 
     padding-right: 5px;
 }
+
+.mainDiv {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.mainDiv h1 {
+    font-size: 28px;
+}
+
+.mainDiv p {
+    font-size: 24px;
+}
+
+.startBtn {
+    background-color: purple;
+    color: #fff;
+}

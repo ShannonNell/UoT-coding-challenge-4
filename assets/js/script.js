@@ -1,12 +1,10 @@
 var root = document.getElementById('root');
 var timerEl = document.getElementById('timer');
 var highscoresEl = document.getElementById('highscores');
-// var headerEl = document.querySelector('.header');
-// Main body elements
-var mainDiv = document.createElement('div');
-var h1El = document.createElement('h1');
-var infoEl = document.createElement('p');
-var startBtnEl = document.createElement('button');
+//main
+var mainDiv = document.querySelector('.mainDiv');
+var startBtn = document.querySelector('.startBtn');
+
 // Quiz elements
 var quizDiv = document.createElement('div');
 var h2El = document.createElement('h2');
@@ -81,22 +79,9 @@ var questions = [
         // - button : go back
         // - button : Clear Highscores
 
-// TEXT/content
-// Main body Text
-h1El.textContent = 'Coding Quiz Challenge';
-infoEl.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your screentime by ten seconds!';
-startBtnEl.textContent = 'Start Quiz';
-
-
 
 //SET ELEMENT ATTRIBUTES
-//Main body attributes
-mainDiv.setAttribute('style', 'margin: auto; width: 60%; text-align: center');
-mainDiv.className = 'mainDiv'; // MAIN STARTING PAGE CLASS
-h1El.setAttribute('style', 'font-size: 28px;');
-infoEl.setAttribute('style', 'font-size: 24;');
-startBtnEl.setAttribute('style', 'background-color: purple; color: #fff;');
-startBtnEl.className = 'startBtn'; // START BUTTON CLASS
+
 // Quiz attributes
 quizDiv.setAttribute('style', 'margin:auto; width: 50%; border: 3px solid');
 quizDiv.className = 'quizDiv'; // QUIZ DIV CLASS
@@ -107,21 +92,11 @@ answerDiv.setAttribute('style', 'font-size: 16px;');
 answerDiv.className = 'answerDiv'; // ANSWER DIV CLASS
 
 
-//APPEND ELEMENTS
-//main append
-root.appendChild(mainDiv);
-mainDiv.appendChild(h1El);
-mainDiv.appendChild(infoEl);
-mainDiv.appendChild(startBtnEl);
-
-
-
-
 // TODO: When click start button, timer starts and question is presented
 var timeInterval;
 var timeLeft = 75;
 // timer countdown function
-startBtnEl.addEventListener('click', function() {
+startBtn.addEventListener('click', function() {
     timeInterval = setInterval(function() {
         if(timeLeft > 0) {
             timerEl.textContent = 'Time: ' + timeLeft;
@@ -135,7 +110,7 @@ startBtnEl.addEventListener('click', function() {
     //removes Main Div and displays question
     mainDiv.remove();
     quizQuestions();
-});
+}); 
 
 // function to present questions
 function quizQuestions() {
