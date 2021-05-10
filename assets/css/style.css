@@ -39,7 +39,7 @@
 .quiz {
     margin: auto;
     width: 50%;
-    display: block; /*this one too*/
+    display: none; /*this one too*/
 }
 
 .question {
