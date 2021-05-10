@@ -78,11 +78,6 @@ function quizQuestions() {
     choice2.textContent = '2. ' + quest.a2;
     choice3.textContent = '3. ' + quest.a3;
     choice4.textContent = '4. ' + quest.a4;
-    console.log(choice1);
-    console.log(choice2);
-    console.log(choice3);
-    console.log(choice4);
-
 };
 
 
