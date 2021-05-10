@@ -52,3 +52,12 @@
     background-color: #6c4479;
     border-radius: 4px;
 }
+
+.checkAnswer {
+    border-top: 2px solid grey;
+    display: none;
+    margin: 10px auto;
+    width: 50%;
+    padding-top: 10px;
+    color: grey;
+}
