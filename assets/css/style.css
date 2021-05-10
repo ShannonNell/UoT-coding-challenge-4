@@ -19,6 +19,7 @@
     margin: auto;
     width: 60%;
     text-align: center;
+    display: block; /*might need to remove or change this block*/
 }
 
 .mainDiv h1 {
@@ -30,6 +31,24 @@
 }
 
 .startBtn {
-    background-color: purple;
+    background-color: #6c4479;
     color: #fff;
+    border-radius: 4px;
+}
+
+.quiz {
+    margin: auto;
+    width: 50%;
+    display: block; /*this one too*/
+}
+
+.question {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.choice {
+    color: #fff;
+    background-color: #6c4479;
+    border-radius: 4px;
 }

@@ -4,16 +4,14 @@ var highscoresEl = document.getElementById('highscores');
 //main
 var mainDiv = document.querySelector('.mainDiv');
 var startBtn = document.querySelector('.startBtn');
+//quiz
+var quiz = document.querySelector('.quiz');
+var question = document.querySelector('.question');
+var choice1 = document.getElementById('ch1');
+var choice2 = document.getElementById('ch2');
+var choice3 = document.getElementById('ch3');
+var choice4 = document.getElementById('ch4');
 
-// Quiz elements
-var quizDiv = document.createElement('div');
-var h2El = document.createElement('h2');
-// var answerUl = document.createElement('ul');
-var answerDiv = document.createElement('div');
-var answerEl1 = document.createElement('p');
-var answerEl2 = document.createElement('p');
-var answerEl3 = document.createElement('p');
-var answerEl4 = document.createElement('p');
 
 
 //array of questions to loop through
@@ -65,32 +63,6 @@ var questions = [
     },
 ];
 
-// - border with wrong/correct underneath?
-    
-    // - div for all done 
-        // - h3 : All done!
-        // - p : Your final score is + score
-        // - p : Enter initials: 
-        // - text field : empty
-        // - button : submit
-    // - div for High score
-        // - h4 : Highscores
-        // - p listing high scores, alternating color for box fill 
-        // - button : go back
-        // - button : Clear Highscores
-
-
-//SET ELEMENT ATTRIBUTES
-
-// Quiz attributes
-quizDiv.setAttribute('style', 'margin:auto; width: 50%; border: 3px solid');
-quizDiv.className = 'quizDiv'; // QUIZ DIV CLASS
-h2El.setAttribute('style', 'font-size: 20px;');
-h2El.className = 'h2'; // HEADING 2 CLASS
-//answer attributes
-answerDiv.setAttribute('style', 'font-size: 16px;');
-answerDiv.className = 'answerDiv'; // ANSWER DIV CLASS
-
 
 // TODO: When click start button, timer starts and question is presented
 var timeInterval;
@@ -109,32 +81,12 @@ startBtn.addEventListener('click', function() {
     }, 1000);
     //removes Main Div and displays question
     mainDiv.remove();
-    quizQuestions();
+    // quizQuestions();
 }); 
 
 // function to present questions
 function quizQuestions() {
-    //quiz append
-    root.appendChild(quizDiv);
-    quizDiv.appendChild(h2El);
-    quizDiv.appendChild(answerDiv);
-    quizDiv.appendChild(answerEl1);
-    quizDiv.appendChild(answerEl2);
-    quizDiv.appendChild(answerEl3);
-    quizDiv.appendChild(answerEl4);
 
-    //Questions
-    h2El.textContent = 'Commonly used data types DO NOT include:';
-    answerEl1.textContent = '1: Strings';
-    answerEl2.textContent = '2: Booleans'; 
-    answerEl3.textContent = '3: Alerts'; 
-    answerEl4.textContent = '2: Numbers'; 
-    
-    // '3: Alerts', '4: Numbers';
-    //for loop to loop through all the questions
-    // for (var i = 0; i < questions.length; i++) {
-        // var answer = questions[i].q;
-    // }
 };
 
 // TODO: When answer question, presented with another question
