@@ -19,7 +19,16 @@ var checkAnsDiv = document.querySelector('.checkAnswer');
 var finishGame = document.querySelector('.finishGame');
 var finishedText = document.querySelector('.finishedText');
 var finalScoreInfo = document.getElementById('finalScoreInfo');
+//form
+var initialsInput = document.getElementById('initials');
 var submitBtn = document.getElementById('submitBtn');
+//highscores
+var highscores = document.querySelector('.highscores');
+var highscoresText = document.querySelector('.highscoresText');
+var highscoresInfo = document.querySelector('.highscoresInfo');
+var goBackBtn = document.getElementById('goBack');
+var clearBtn = document.getElementById('clearHighscores');
+
 
 
 //array of questions to loop through
@@ -144,16 +153,32 @@ function answerIsWrong() {
 };
 
 // Game over function
-var finalScore = 0;
+var finalScoreInfo;
 function gameOver() {
-    checkAnsDiv.style.display = 'none';
+    // checkAnsDiv.style.display = 'none';
     quiz.style.display = 'none';
 
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
 
-}
+    //When game over, save initials and score
+    submitBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        var enteredInitials = initialsInput.value;
 
+        //set initials to localStorage
+        localStorage.setItem('initials', enteredInitials);
 
-// TODO: When game over, save initials and score
+        //Highscores section should display
+        checkAnsDiv.style.display = 'none';
+        finishGame.style.display = 'none';
+        highscores.style.display = 'block';
+
+        //Highscore loaded with enteredinitials and score
+        var storedInitials = localStorage.getItem('initials');
+        highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+        
+    });
+};
+

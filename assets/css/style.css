@@ -83,5 +83,25 @@
     border-radius: 4px;
 }
 
+.highscores {
+    display: none;
+    margin: auto;
+    width: 50%;
+}
+
+.highscoresText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.highscoresInfo {
+    font-size: 16px;
+    background-color: #daccdf;
+    padding: 5px;
+    width: 75%;
+}
+
+
+
 
 /* Organize, merge together, fix classes and ids mixed up*/
