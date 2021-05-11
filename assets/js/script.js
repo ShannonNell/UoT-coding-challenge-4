@@ -23,7 +23,7 @@ var finalScoreInfo = document.getElementById('finalScoreInfo');
 var initialsInput = document.getElementById('initials');
 var submitBtn = document.getElementById('submitBtn');
 //highscores
-var highscores = document.querySelector('.highscores');
+var highscoresDiv = document.querySelector('.highscoresDiv');
 var highscoresText = document.querySelector('.highscoresText');
 var highscoresInfo = document.querySelector('.highscoresInfo');
 var goBackBtn = document.getElementById('goBack');
@@ -78,37 +78,51 @@ var questions = [
 
 // global variables
 var timeInterval;
-var timeLeft = 75;
+var timeLeft;
 var lastQuest = questions.length - 1;
 var currentQuest = 0;
 
+//view high scores event listener
+highscoresEl.addEventListener('click', function(event){
+    // event.preventDefault(); 
+    highscoresSec();
+});
 
 // start quiz function
-startBtn.addEventListener('click', function() {
-    //timer starts
-    timeInterval = setInterval(function() {
-        //if time left still
-        if(timeLeft > 0) {
-            timerEl.textContent = 'Time: ' + timeLeft;
-            timeLeft--; 
-        }
-        //if no time left
-        else {
-            timerEl.textContent = 'Time: ' + timeLeft;
-            clearInterval(timeInterval);
-            gameOver();
-        }    
-    }, 1000);
+function startQuiz() { 
+    timeLeft = 75;
+    mainDiv.style.display = 'block';
+    highscoresEl.textContent = 'View High Scores';
+    
+    timerEl.textContent = 'Time: ' + timeLeft;
+    // timerEl.textContent = 'Time: ' + timeLeft;
+
+    startBtn.addEventListener('click', function(event) {
+        // event.preventDefault(); 
+        //timer starts
+        timeInterval = setInterval(function() {
+            //if time left still
+            if(timeLeft > 0) {
+                timerEl.textContent = 'Time: ' + timeLeft;
+                timeLeft--; 
+            }
+            //if no time left
+            else {
+                timerEl.textContent = 'Time: ' + timeLeft;
+                clearInterval(timeInterval);
+                gameOver();
+            }    
+        }, 1000);
+        quizQuestions();
+    })
+}
+
+// function to present questions
+function quizQuestions() {
     //question appears
     mainDiv.style.display = 'none';
     quiz.style.display = 'block';
-    //question function runs
-    quizQuestions();
-}); 
 
- 
-// function to present questions
-function quizQuestions() {
     // curent question will equal my questions array's current index number, starting at 0
     var quest = questions[currentQuest];
 
@@ -164,21 +178,49 @@ function gameOver() {
 
     //When game over, save initials and score
     submitBtn.addEventListener('click', function(event) {
-        event.preventDefault();
+        event.preventDefault(); 
         var enteredInitials = initialsInput.value;
 
-        //set initials to localStorage
-        localStorage.setItem('initials', enteredInitials);
-
-        //Highscores section should display
-        checkAnsDiv.style.display = 'none';
-        finishGame.style.display = 'none';
-        highscores.style.display = 'block';
-
-        //Highscore loaded with enteredinitials and score
-        var storedInitials = localStorage.getItem('initials');
-        highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
-        
+        if(enteredInitials) {
+            //set initials to localStorage
+            localStorage.setItem('initials', enteredInitials);
+            highscoresSec();
+        } else if(enteredInitials === '' || enteredInitials === null) {
+            alert('Please enter your initials!');
+        } 
     });
 };
 
+var highscoresSec = function() {
+    //Highscores section should display
+    checkAnsDiv.style.display = 'none';
+    finishGame.style.display = 'none';
+    highscoresDiv.style.display = 'block';
+    mainDiv.style.display = 'none';
+    quiz.style.display = 'none';
+    highscoresEl.textContent = '';
+    timerEl.style.display = 'none';
+
+    //Highscore loaded with enteredInitials and score
+    var storedInitials = localStorage.getItem('initials');
+    highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+    // clearInterval(timeInterval);
+
+    //Go back button clicked
+    goBackBtn.addEventListener('click', function() {
+        startQuiz();
+        highscoresDiv.style.display = 'none';
+        timerEl.style.display = 'block';
+    })
+
+    //clear button clicked
+    clearBtn.addEventListener('click', function() {
+        localStorage.clear();
+        highscoresInfo.textContent = '';
+        console.log('clear local storage');
+    })
+} 
+
+
+
+startQuiz();
