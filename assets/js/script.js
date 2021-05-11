@@ -15,6 +15,11 @@ var choice3 = document.getElementById('ch3');
 var choice4 = document.getElementById('ch4');
 //answer
 var checkAnsDiv = document.querySelector('.checkAnswer');
+//game over
+var finishGame = document.querySelector('.finishGame');
+var finishedText = document.querySelector('.finishedText');
+var finalScoreInfo = document.getElementById('finalScoreInfo');
+var submitBtn = document.getElementById('submitBtn');
 
 
 //array of questions to loop through
@@ -28,7 +33,7 @@ var questions = [
         correctAnswer: 'ch3'
     },
     { 
-        q2: 'The condition in an if/else statement is enclosed within _______.', 
+        q1: 'The condition in an if/else statement is enclosed within _______.', 
         a1: 'Quotes',
         a2: 'Curly Brackets',
         a3: 'Parentheses - CORRECT', 
@@ -36,7 +41,7 @@ var questions = [
         correctAnswer: 'ch3'
     },
     { 
-        q3: 'Arrays in JavaScript can be used to store _______.', 
+        q1: 'Arrays in JavaScript can be used to store _______.', 
         a1: 'Numbers and Strings',
         a2: 'Other Arrays',
         a3: 'Booleans', 
@@ -44,7 +49,7 @@ var questions = [
         correctAnswer: 'ch4'
     },
     { 
-        q4: 'String values must be enclosed within _______ when being assigned to variables.', 
+        q1: 'String values must be enclosed within _______ when being assigned to variables.', 
         a1: 'Commas',
         a2: 'Curly Brackets',
         a3: 'Quotes - CORRECT', 
@@ -52,7 +57,7 @@ var questions = [
         correctAnswer: 'ch3'
     },
     { 
-        q5: 'A very useful tool used during development and debugging for printing content to the debugger is:', 
+        q1: 'A very useful tool used during development and debugging for printing content to the debugger is:', 
         a1: 'JavaScript',
         a2: 'Terminal/Bash',
         a3: 'For loops', 
@@ -82,7 +87,7 @@ startBtn.addEventListener('click', function() {
         else {
             timerEl.textContent = 'Time: ' + timeLeft;
             clearInterval(timeInterval);
-            //high score/game over page
+            gameOver();
         }    
     }, 1000);
     //question appears
@@ -92,7 +97,7 @@ startBtn.addEventListener('click', function() {
     quizQuestions();
 }); 
 
-
+ 
 // function to present questions
 function quizQuestions() {
     // curent question will equal my questions array's current index number, starting at 0
@@ -121,7 +126,9 @@ function checkAnswer(answer) {
         quizQuestions();
     //if there are no more questions, display end/ game over
     } else {
-        //gameOver();
+        timerEl.textContent = 'Time: ' + timeLeft;
+        clearInterval(timeInterval);
+        gameOver();
     }
 }
 
@@ -133,11 +140,20 @@ function answerIsCorrect() {
 function answerIsWrong() {
     checkAnsDiv.textContent = 'Wrong!';
     checkAnsDiv.style.display = 'block';
+    timeLeft = timeLeft - 10;
 };
 
-// TODO: When timer at 0 or questions answered, game over
-//gameOver();
-// answerIsCorrect();
-// answerIsWrong();
+// Game over function
+var finalScore = 0;
+function gameOver() {
+    checkAnsDiv.style.display = 'none';
+    quiz.style.display = 'none';
+
+    finishGame.style.display = 'block';
+    finishedText.textContent = 'All done!';
+    finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
+
+}
+
 
 // TODO: When game over, save initials and score

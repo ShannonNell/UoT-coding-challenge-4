@@ -9,17 +9,20 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body id="root"> 
+    <!-- header -->
     <header class="header">
         <p id="highscores">View High Scores</p>
         <p id="timer">Time: 75</p>
     </header>
 
+    <!-- landing information -->
     <main class="mainDiv">
         <h1> Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your screentime by ten seconds!</p>
         <button class="startBtn">Start Quiz</button>
     </main>
 
+    <!-- quiz section -->
     <div class="quiz">
         <div>
             <p class="question">Question</p>
@@ -35,7 +38,23 @@
         </div>
     </div>
 
-    <div class = "checkAnswer"></div>
+    <div class="checkAnswer"></div>
+
+    <!-- finish game score and form -->
+    <div class="finishGame">
+        <p class="finishedText"></p>
+        <p id="finalScoreInfo"></p>
+
+        <!-- Highscore form submit-->
+        <div id="initialsDetails">
+            <form id="highscoreDetails">
+                <label for="initials">Enter initials:</label>
+                <input type="text" initials="initials" id="initials" class="form-input"/>
+                <button type="submit" id="submitBtn">Submit</button>
+            </form>
+            
+        </div>
+    </div>
     
     <script src="./assets/js/script.js" ></script>
 </body>

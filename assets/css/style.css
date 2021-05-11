@@ -61,3 +61,27 @@
     padding-top: 10px;
     color: grey;
 }
+
+.finishGame {
+    display: none;
+    margin: auto;
+    width: 50%;
+}
+
+.finishedText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#finalScoreInfo {
+    font-size: 16px;
+}
+
+#submitBtn {
+    background-color: #6c4479;
+    color: #fff;
+    border-radius: 4px;
+}
+
+
+/* Organize, merge together, fix classes and ids mixed up*/
