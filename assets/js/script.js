@@ -78,14 +78,10 @@ var questions = [
 
 // global variables
 var timeInterval;
-var timeLeft;
+var timeLeft = timerEl;
 var lastQuest = questions.length - 1;
 var currentQuest = 0;
 
-//view high scores 
-highscoresEl.addEventListener('click', function(){
-    highscoresSec();
-});
 
 // start quiz function
 function startQuiz() { 
@@ -94,23 +90,19 @@ function startQuiz() {
     highscoresEl.textContent = 'View High Scores';
     
     timerEl.textContent = 'Time: ' + timeLeft;
-    // timerEl.textContent = 'Time: ' + timeLeft;
 
-    startBtn.addEventListener('click', function(event) {
-        // event.preventDefault(); 
+    startBtn.addEventListener('click', function() {
         //timer starts
         timeInterval = setInterval(function() {
-            //if time left still
-            if(timeLeft > 0) {
-                timerEl.textContent = 'Time: ' + timeLeft;
-                timeLeft--; 
+            if(timeLeft > 0) {timerEl.textContent = 'Time: ' + timeLeft;
+            timeLeft --;
             }
             //if no time left
             else {
                 timerEl.textContent = 'Time: ' + timeLeft;
                 clearInterval(timeInterval);
                 gameOver();
-            }    
+            } 
         }, 1000);
         quizQuestions();
     })
@@ -170,6 +162,7 @@ var finalScoreInfo;
 function gameOver() {
     // checkAnsDiv.style.display = 'none';
     quiz.style.display = 'none';
+    mainDiv.style.display = 'none';
 
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
@@ -179,6 +172,8 @@ function gameOver() {
     submitBtn.addEventListener('click', function(event) {
         event.preventDefault(); 
         var enteredInitials = initialsInput.value;
+
+        clearInterval(timeInterval);
 
         if(enteredInitials) {
             //set initials to localStorage
@@ -190,6 +185,12 @@ function gameOver() {
     });
 };
 
+//view high scores 
+highscoresEl.addEventListener('click', function(){
+    highscoresSec();
+});
+
+// highscores Section
 var highscoresSec = function() {
     //Highscores section should display
     checkAnsDiv.style.display = 'none';
