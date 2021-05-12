@@ -79,7 +79,7 @@ var questions = [
 // global variables
 var timeInterval;
 var timeLeft = timerEl;
-// var lastQuest = questions.length - 1;
+var lastQuest = questions.length - 1;
 var currentQuest = 0;
 
 
@@ -94,6 +94,8 @@ function startQuiz() {
     quiz.style.display = 'none';
     
     timerEl.textContent = 'Time: ' + timeLeft;
+    //ensure currentQuestion is set to the array position of 0 so on new game, will load correctly
+    currentQuest = 0;
 };
 
 startBtn.onclick = countdown;
@@ -115,20 +117,18 @@ function countdown() {
 
 // function to present questions
 function quizQuestions() {
-    for (var i = 0; i < questions.length; i++) {
-        //question appears
-        mainDiv.style.display = 'none';
-        quiz.style.display = 'block';
+    //question appears
+    mainDiv.style.display = 'none';
+    quiz.style.display = 'block';
 
-        // curent question will equal my questions array's current index number, starting at 0
-        var quest = questions[currentQuest];
+    // curent question will equal my questions array's current index number, starting at 0
+    var quest = questions[currentQuest];
 
-        question.textContent = quest.q1;
-        choice1.textContent = '1. ' + quest.a1;
-        choice2.textContent = '2. ' + quest.a2;
-        choice3.textContent = '3. ' + quest.a3;
-        choice4.textContent = '4. ' + quest.a4;
-    };
+    question.textContent = quest.q1;
+    choice1.textContent = '1. ' + quest.a1;
+    choice2.textContent = '2. ' + quest.a2;
+    choice3.textContent = '3. ' + quest.a3;
+    choice4.textContent = '4. ' + quest.a4;
 };
 
 
@@ -142,7 +142,7 @@ function checkAnswer(answer) {
         answerIsWrong();
     }
     //if there are still more questions, go to next question
-    if(currentQuest < questions.length) {
+    if(currentQuest < lastQuest) {
         currentQuest++;
         quizQuestions();
     //if there are no more questions, display end/ game over
@@ -175,12 +175,9 @@ function gameOver() {
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
-};
 
-submitBtn.onclick = submitHS;
-
-function submitHS(event) {
     //When game over, save initials and score
+    submitBtn.addEventListener('click', function(event) {
         event.preventDefault(); 
         var enteredInitials = initialsInput.value;
 
@@ -193,8 +190,8 @@ function submitHS(event) {
         } else if(enteredInitials === '' || enteredInitials === null) {
             alert('Please enter your initials!');
         } 
-    };
-
+    });
+};
 
 //view high scores 
 highscoresEl.addEventListener('click', function(){
