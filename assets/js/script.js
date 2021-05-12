@@ -94,23 +94,24 @@ function startQuiz() {
     quiz.style.display = 'none';
     
     timerEl.textContent = 'Time: ' + timeLeft;
+};
 
-    startBtn.addEventListener('click', function() {
-        //timer starts
-        timeInterval = setInterval(function() {
-            if(timeLeft > 0) {timerEl.textContent = 'Time: ' + timeLeft;
-            timeLeft --;
-            }
-            //if no time left
-            else {
-                timerEl.textContent = 'Time: ' + timeLeft;
-                clearInterval(timeInterval);
-                gameOver();
-            } 
-        }, 1000);
-        quizQuestions();
-    })
-}
+startBtn.onclick = countdown;
+
+function countdown() {
+    timeInterval = setInterval(function() {
+        if(timeLeft > 0) {timerEl.textContent = 'Time: ' + timeLeft;
+        timeLeft --;
+        }
+        //if no time left
+        else {
+            timerEl.textContent = 'Time: ' + timeLeft;
+            clearInterval(timeInterval);
+            gameOver();
+        } 
+    }, 1000);
+    quizQuestions();
+};
 
 // function to present questions
 function quizQuestions() {
