@@ -82,9 +82,8 @@ var timeLeft;
 var lastQuest = questions.length - 1;
 var currentQuest = 0;
 
-//view high scores event listener
-highscoresEl.addEventListener('click', function(event){
-    // event.preventDefault(); 
+//view high scores 
+highscoresEl.addEventListener('click', function(){
     highscoresSec();
 });
 
@@ -203,7 +202,13 @@ var highscoresSec = function() {
 
     //Highscore loaded with enteredInitials and score
     var storedInitials = localStorage.getItem('initials');
-    highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+    if (localStorage.getItem("initials") === null) {
+        highscoresInfo.textContent = '';
+    }
+    else {
+        highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+    }
+    
     // clearInterval(timeInterval);
 
     //Go back button clicked

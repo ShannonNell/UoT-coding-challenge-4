@@ -20,7 +20,7 @@ To test knowledge on JavaScript fundamentals.
 ### Deployed Quiz:
 * [Quiz](link)
 ### Links that helped:
-* 
+* https://blog.logrocket.com/localstorage-javascript-complete-guide/#clear
 
 ## Tools
 * HTML 
