@@ -88,6 +88,10 @@ function startQuiz() {
     timeLeft = 75;
     mainDiv.style.display = 'block';
     highscoresEl.textContent = 'View High Scores';
+    checkAnsDiv.style.display = 'none';
+    finishGame.style.display = 'none';
+    highscoresDiv.style.display = 'none';
+    quiz.style.display = 'none';
     
     timerEl.textContent = 'Time: ' + timeLeft;
 
@@ -163,6 +167,7 @@ function gameOver() {
     // checkAnsDiv.style.display = 'none';
     quiz.style.display = 'none';
     mainDiv.style.display = 'none';
+    highscoresDiv.style.display = 'none';
 
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
@@ -195,11 +200,12 @@ var highscoresSec = function() {
     //Highscores section should display
     checkAnsDiv.style.display = 'none';
     finishGame.style.display = 'none';
-    highscoresDiv.style.display = 'block';
     mainDiv.style.display = 'none';
     quiz.style.display = 'none';
     highscoresEl.textContent = '';
     timerEl.style.display = 'none';
+
+    highscoresDiv.style.display = 'block';
 
     //Highscore loaded with enteredInitials and score
     var storedInitials = localStorage.getItem('initials');
@@ -215,7 +221,6 @@ var highscoresSec = function() {
     //Go back button clicked
     goBackBtn.addEventListener('click', function() {
         startQuiz();
-        highscoresDiv.style.display = 'none';
         timerEl.style.display = 'block';
     })
 
