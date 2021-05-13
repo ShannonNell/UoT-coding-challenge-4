@@ -175,23 +175,33 @@ function gameOver() {
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
-
-    //When game over, save initials and score
-    submitBtn.addEventListener('click', function(event) {
-        event.preventDefault(); 
-        var enteredInitials = initialsInput.value;
-
-        clearInterval(timeInterval);
-
-        if(enteredInitials) {
-            //set initials to localStorage
-            localStorage.setItem('initials', enteredInitials);
-            highscoresSec();
-        } else if(enteredInitials === '' || enteredInitials === null) {
-            alert('Please enter your initials!');
-        } 
-    });
 };
+
+submitBtn.onclick = saveHighscores;
+
+var nameScore = [];
+//When game over, save initials and score
+function saveHighscores(event) {
+    event.preventDefault();
+    var enteredInitials = initialsInput.value; 
+
+    clearInterval(timeInterval);
+
+    nameScore = {
+        initials: enteredInitials,
+        score: timeLeft
+    };
+
+    if(enteredInitials) {
+        //set initials to localStorage
+        localStorage.setItem('initials', JSON.stringify(nameScore));
+        console.log(nameScore);
+        highscoresSec();
+    } else if(enteredInitials === '' || enteredInitials === null) {
+        alert('Please enter your initials!');
+    } 
+}
+        
 
 //view high scores 
 highscoresEl.addEventListener('click', function(){
@@ -211,15 +221,14 @@ var highscoresSec = function() {
     highscoresDiv.style.display = 'block';
 
     //Highscore loaded with enteredInitials and score
-    var storedInitials = localStorage.getItem('initials');
-    if (localStorage.getItem("initials") === null) {
+    var storedInitials = JSON.parse(localStorage.getItem(nameScore));
+    
+    if (storedInitials === null) {
         highscoresInfo.textContent = '';
     }
     else {
-        highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+        highscoresInfo.textContent = storedInitials;
     }
-    
-    // clearInterval(timeInterval);
 
     //Go back button clicked
     goBackBtn.addEventListener('click', function() {
