@@ -164,6 +164,12 @@ function answerIsWrong() {
     timeLeft = timeLeft - 10;
 };
 
+
+
+
+
+
+
 // Game over function
 var finalScoreInfo;
 function gameOver() {
@@ -175,38 +181,45 @@ function gameOver() {
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
-};
 
-submitBtn.onclick = saveHighscores;
+    //When game over, save initials and score
+    submitBtn.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        var enteredInitials = initialsInput.value;
 
-var nameScore = [];
-//When game over, save initials and score
-function saveHighscores(event) {
-    event.preventDefault();
-    var enteredInitials = initialsInput.value; 
+        clearInterval(timeInterval);
 
-    clearInterval(timeInterval);
+        // var nameScore = {
+        //     name: enteredInitials,
+        //     score: timeLeft
+        // };
+        // console.log(nameScore);
 
-    nameScore = {
-        initials: enteredInitials,
-        score: timeLeft
-    };
+        storedInitials.push(enteredInitials + ' - ' + timeLeft);
+        console.log(storedInitials);
 
-    if(enteredInitials) {
-        //set initials to localStorage
-        localStorage.setItem('initials', JSON.stringify(nameScore));
-        console.log(nameScore);
+        localStorage.setItem('score', JSON.stringify(storedInitials));
         highscoresSec();
-    } else if(enteredInitials === '' || enteredInitials === null) {
-        alert('Please enter your initials!');
-    } 
-}
-        
+
+
+        // if(enteredInitials) {
+        //     //set initials to localStorage
+        //     localStorage.setItem('initials', enteredInitials);
+        //     highscoresSec();
+        // } else if(enteredInitials === '' || enteredInitials === null) {
+        //     alert('Please enter your initials!');
+        // } 
+    });
+};
 
 //view high scores 
 highscoresEl.addEventListener('click', function(){
     highscoresSec();
 });
+
+//Highscore loaded with enteredInitials and score
+var storedInitials = JSON.parse(localStorage.getItem('score')) || [];
+console.log(storedInitials);
 
 // highscores Section
 var highscoresSec = function() {
@@ -220,15 +233,25 @@ var highscoresSec = function() {
 
     highscoresDiv.style.display = 'block';
 
-    //Highscore loaded with enteredInitials and score
-    var storedInitials = JSON.parse(localStorage.getItem(nameScore));
+    // //Highscore loaded with enteredInitials and score
+    // var storedInitials = JSON.parse(localStorage.getItem('initials')) || [];
+    // console.log(storedInitials);
+    for (i = 0; i < storedInitials.length; i++) {
+        var hsInfo = storedInitials[i];
+        var list = document.createElement("li");
+        list.textContent = hsInfo;
+        highscoresInfo.appendChild(list);
+    }
+
+
+    // if (localStorage.getItem("initials") === null) {
+    //     highscoresInfo.textContent = '';
+    // }
+    // else {
+    //     highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
+    // }
     
-    if (storedInitials === null) {
-        highscoresInfo.textContent = '';
-    }
-    else {
-        highscoresInfo.textContent = storedInitials;
-    }
+    // clearInterval(timeInterval);
 
     //Go back button clicked
     goBackBtn.addEventListener('click', function() {
