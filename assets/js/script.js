@@ -194,21 +194,16 @@ function gameOver() {
         //     score: timeLeft
         // };
         // console.log(nameScore);
+        if (enteredInitials) {
+            storedInitials.push(enteredInitials + ' - ' + timeLeft);
+            console.log(storedInitials);
 
-        storedInitials.push(enteredInitials + ' - ' + timeLeft);
-        console.log(storedInitials);
-
-        localStorage.setItem('score', JSON.stringify(storedInitials));
-        highscoresSec();
-
-
-        // if(enteredInitials) {
-        //     //set initials to localStorage
-        //     localStorage.setItem('initials', enteredInitials);
-        //     highscoresSec();
-        // } else if(enteredInitials === '' || enteredInitials === null) {
-        //     alert('Please enter your initials!');
-        // } 
+            localStorage.setItem('score', JSON.stringify(storedInitials));
+            highscoresSec();
+        }
+        else if (enteredInitials === '' || enteredInitials === null) {
+            alert('Please enter your initials!');
+        }
     });
 };
 
@@ -243,16 +238,6 @@ var highscoresSec = function() {
         highscoresInfo.appendChild(list);
     }
 
-
-    // if (localStorage.getItem("initials") === null) {
-    //     highscoresInfo.textContent = '';
-    // }
-    // else {
-    //     highscoresInfo.textContent = storedInitials + ' - ' + timeLeft;
-    // }
-    
-    // clearInterval(timeInterval);
-
     //Go back button clicked
     goBackBtn.addEventListener('click', function() {
         startQuiz();
@@ -266,7 +251,6 @@ var highscoresSec = function() {
         console.log('clear local storage');
     })
 } 
-
 
 
 startQuiz();
