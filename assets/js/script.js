@@ -37,7 +37,7 @@ var questions = [
         q1: 'Commonly used data types DO NOT include:', 
         a1: 'Strings',
         a2: 'Booleans',
-        a3: 'Alerts - CORRECT', 
+        a3: 'Alerts', 
         a4: 'Numbers',
         correctAnswer: 'ch3'
     },
@@ -45,7 +45,7 @@ var questions = [
         q1: 'The condition in an if/else statement is enclosed within _______.', 
         a1: 'Quotes',
         a2: 'Curly Brackets',
-        a3: 'Parentheses - CORRECT', 
+        a3: 'Parentheses', 
         a4: 'Square Brackets',
         correctAnswer: 'ch3'
     },
@@ -54,14 +54,14 @@ var questions = [
         a1: 'Numbers and Strings',
         a2: 'Other Arrays',
         a3: 'Booleans', 
-        a4: 'All of the Above - CORRECT',
+        a4: 'All of the Above',
         correctAnswer: 'ch4'
     },
     { 
         q1: 'String values must be enclosed within _______ when being assigned to variables.', 
         a1: 'Commas',
         a2: 'Curly Brackets',
-        a3: 'Quotes - CORRECT', 
+        a3: 'Quotes', 
         a4: 'Parentheses',
         correctAnswer: 'ch3'
     },
@@ -70,7 +70,7 @@ var questions = [
         a1: 'JavaScript',
         a2: 'Terminal/Bash',
         a3: 'For loops', 
-        a4: 'Console.log - CORRECT',
+        a4: 'Console.log',
         correctAnswer: 'ch4'
     },
 ];
