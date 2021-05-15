@@ -13,7 +13,7 @@
     margin: auto;
     width: 60%;
     text-align: center;
-    display: block; /*might need to remove or change this block*/
+    display: block; 
 }
 
 #mainDiv h1 {
@@ -24,16 +24,10 @@
     font-size: 24px;
 }
 
-.startBtn {
-    background-color: #6c4479;
-    color: #fff;
-    border-radius: 4px;
-}
-
 .quiz {
     margin: auto;
     width: 50%;
-    display: none; /*this one too*/
+    display: none;
 }
 
 .question {
@@ -41,7 +35,7 @@
     font-weight: bold;
 }
 
-.choice {
+.buttons {
     color: #fff;
     background-color: #6c4479;
     border-radius: 4px;
@@ -49,7 +43,7 @@
     padding: 3px;
 }
 
-.checkAnswer {
+#checkAnswer {
     border-top: 2px solid grey;
     display: none;
     margin: 10px auto;
@@ -64,7 +58,7 @@
     width: 50%;
 }
 
-.finishedText {
+#finishedText {
     font-size: 20px;
     font-weight: bold;
 }
@@ -73,24 +67,18 @@
     font-size: 16px;
 }
 
-#submitBtn {
-    background-color: #6c4479;
-    color: #fff;
-    border-radius: 4px;
-}
-
 .highscoresDiv {
     display: none;
     margin: auto;
     width: 50%;
 }
 
-.highscoresText {
+#highscoresText {
     font-size: 20px;
     font-weight: bold;
 }
 
-.highscoresInfo {
+#highscoresInfo {
     font-size: 16px;
     background-color: #daccdf;
     padding: 5px;
@@ -98,12 +86,7 @@
     width: 75%;
 }
 
-.highscoresInfo li {
+#highscoresInfo li {
     border-bottom: 1px solid #6c4479;
     list-style-type: none;
 }
-
-
-
-
-/* Organize, merge together, fix classes and ids mixed up*/

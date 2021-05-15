@@ -18,9 +18,10 @@ To test knowledge on JavaScript fundamentals.
 
 ## Links
 ### Deployed Quiz:
-* [Quiz](link)
+* [Quiz](https://shannonnell.github.io/UoT-coding-challenge-4/)
 ### Links that helped:
-* https://blog.logrocket.com/localstorage-javascript-complete-guide/#clear
+* [LocalStorage Guide](https://blog.logrocket.com/localstorage-javascript-complete-guide/#clear)
+* [LocalStorage Youtube](https://www.youtube.com/watch?v=DFhmNLKwwGw)
 
 ## Tools
 * HTML 

@@ -19,7 +19,7 @@
     <main id="mainDiv">
         <h1> Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your screentime by ten seconds!</p>
-        <button class="startBtn">Start Quiz</button> 
+        <button class="buttons" id="startBtn">Start Quiz</button> 
     </main>
 
     <!-- quiz section -->
@@ -27,13 +27,13 @@
         <div>
             <p class="question">Question</p>
             <div class="choices">
-                <button class="choice" id="ch1" onclick="checkAnswer('ch1')">1.</button>
+                <button class="buttons" id="ch1" onclick="checkAnswer('ch1')">1.</button>
                 <br />
-                <button class="choice" id="ch2" onclick="checkAnswer('ch2')">2.</button>
+                <button class="buttons" id="ch2" onclick="checkAnswer('ch2')">2.</button>
                 <br />
-                <button class="choice" id="ch3" onclick="checkAnswer('ch3')">3.</button>
+                <button class="buttons" id="ch3" onclick="checkAnswer('ch3')">3.</button>
                 <br />
-                <button class="choice" id="ch4" onclick="checkAnswer('ch4')">4.</button>
+                <button class="buttons" id="ch4" onclick="checkAnswer('ch4')">4.</button>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
 
     <!-- finish game score and form -->
     <div class="finishGame">
-        <p class="finishedText"></p>
+        <p id="finishedText"></p>
         <p id="finalScoreInfo"></p>
 
         <!-- Highscore form submit-->
@@ -49,19 +49,19 @@
             <form id="highscoreDetails">
                 <label for="initials">Enter initials:</label>
                 <input type="text" initials="initials" id="initials" class="form-input"/>
-                <button type="submit" id="submitBtn">Submit</button>
+                <button type="submit" class="buttons" id="submitBtn">Submit</button>
             </form>
         </div>
     </div>
 
-    <div class="checkAnswer"></div>
+    <div id="checkAnswer"></div>
 
     <!-- highscores section -->
     <div class="highscoresDiv">
-        <h2 class="highscoresText">Highscores</h2>
-        <div class="highscoresInfo"></div>
-        <button class="choice" id="goBack">Go Back</button>
-        <button class="choice" id="clearHighscores">Clear Highscores</button>
+        <h2 id="highscoresText">Highscores</h2>
+        <div id="highscoresInfo"></div>
+        <button class="buttons" id="goBack">Go Back</button>
+        <button class="buttons" id="clearHighscores">Clear Highscores</button>
     </div>
     
     <script src="./assets/js/script.js" ></script>

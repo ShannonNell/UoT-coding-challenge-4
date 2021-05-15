@@ -1,37 +1,37 @@
+// VARIABLES
 var root = document.getElementById('root');
 var timerEl = document.getElementById('timer');
 var highscoresEl = document.getElementById('highscores');
 //main
 var mainDiv = document.getElementById('mainDiv');
-var startBtn = document.querySelector('.startBtn');
+var startBtn = document.getElementById('startBtn');
 //quiz
 var quiz = document.querySelector('.quiz');
 var question = document.querySelector('.question');
 var choices = document.getElementById('choices');
-var choice = document.getElementById('choice');
 var choice1 = document.getElementById('ch1');
 var choice2 = document.getElementById('ch2');
 var choice3 = document.getElementById('ch3');
 var choice4 = document.getElementById('ch4');
 //answer
-var checkAnsDiv = document.querySelector('.checkAnswer');
+var checkAnsDiv = document.getElementById('checkAnswer');
 //game over
 var finishGame = document.querySelector('.finishGame');
-var finishedText = document.querySelector('.finishedText');
+var finishedText = document.getElementById('finishedText');
 var finalScoreInfo = document.getElementById('finalScoreInfo');
 //form
 var initialsInput = document.getElementById('initials');
 var submitBtn = document.getElementById('submitBtn');
 //highscores
 var highscoresDiv = document.querySelector('.highscoresDiv');
-var highscoresText = document.querySelector('.highscoresText');
-var highscoresInfo = document.querySelector('.highscoresInfo');
+var highscoresText = document.getElementById('highscoresText');
+var highscoresInfo = document.getElementById('highscoresInfo');
 var goBackBtn = document.getElementById('goBack');
 var clearBtn = document.getElementById('clearHighscores');
 
 
 
-//array of questions to loop through
+//array of questions and answers
 var questions = [
     { 
         q1: 'Commonly used data types DO NOT include:', 
@@ -100,6 +100,7 @@ function startQuiz() {
 
 startBtn.onclick = countdown;
 
+// Countdown function
 function countdown() {
     timeInterval = setInterval(function() {
         if(timeLeft > 0) {timerEl.textContent = 'Time: ' + timeLeft;
@@ -151,11 +152,13 @@ function checkAnswer(answer) {
     }
 }
 
+// If correct
 function answerIsCorrect() {
     checkAnsDiv.textContent = 'Correct!';
     checkAnsDiv.style.display = 'block';
 ;}
 
+// If incorrect
 function answerIsWrong() {
     checkAnsDiv.textContent = 'Wrong!';
     checkAnsDiv.style.display = 'block';
@@ -165,16 +168,16 @@ function answerIsWrong() {
 // Game over function
 var finalScoreInfo;
 function gameOver() {
-    // checkAnsDiv.style.display = 'none';
     quiz.style.display = 'none';
     mainDiv.style.display = 'none';
     highscoresDiv.style.display = 'none';
 
+    // Finished Game display
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
 
-    //When game over, save initials and score
+    // When game over, save initials and score
     submitBtn.addEventListener('click', function(event) {
         event.preventDefault(); 
         var enteredInitials = initialsInput.value;
@@ -235,6 +238,5 @@ var highscoresSec = function() {
         console.log('clear local storage');
     })
 } 
-
 
 startQuiz();
