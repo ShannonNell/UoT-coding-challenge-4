@@ -1,32 +1,26 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
-
 #root {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.header {
+#header {
     display: flex;
     justify-content: space-between;
     font-size: 16px; 
     padding-right: 5px;
 }
 
-.mainDiv {
+#mainDiv {
     margin: auto;
     width: 60%;
     text-align: center;
     display: block; /*might need to remove or change this block*/
 }
 
-.mainDiv h1 {
+#mainDiv h1 {
     font-size: 28px;
 }
 
-.mainDiv p {
+#mainDiv p {
     font-size: 24px;
 }
 
@@ -51,6 +45,8 @@
     color: #fff;
     background-color: #6c4479;
     border-radius: 4px;
+    margin: 3px;
+    padding: 3px;
 }
 
 .checkAnswer {
@@ -98,7 +94,13 @@
     font-size: 16px;
     background-color: #daccdf;
     padding: 5px;
+    margin-bottom: 10px;
     width: 75%;
+}
+
+.highscoresInfo li {
+    border-bottom: 1px solid #6c4479;
+    list-style-type: none;
 }
 
 

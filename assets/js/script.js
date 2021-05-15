@@ -2,7 +2,7 @@ var root = document.getElementById('root');
 var timerEl = document.getElementById('timer');
 var highscoresEl = document.getElementById('highscores');
 //main
-var mainDiv = document.querySelector('.mainDiv');
+var mainDiv = document.getElementById('mainDiv');
 var startBtn = document.querySelector('.startBtn');
 //quiz
 var quiz = document.querySelector('.quiz');
@@ -131,8 +131,6 @@ function quizQuestions() {
     choice4.textContent = '4. ' + quest.a4;
 };
 
-
-
 // check answer
 function checkAnswer(answer) {
     //check if user answer matches correct answer
@@ -164,12 +162,6 @@ function answerIsWrong() {
     timeLeft = timeLeft - 10;
 };
 
-
-
-
-
-
-
 // Game over function
 var finalScoreInfo;
 function gameOver() {
@@ -189,11 +181,6 @@ function gameOver() {
 
         clearInterval(timeInterval);
 
-        // var nameScore = {
-        //     name: enteredInitials,
-        //     score: timeLeft
-        // };
-        // console.log(nameScore);
         if (enteredInitials) {
             storedInitials.push(enteredInitials + ' - ' + timeLeft);
             console.log(storedInitials);
@@ -228,9 +215,6 @@ var highscoresSec = function() {
 
     highscoresDiv.style.display = 'block';
 
-    // //Highscore loaded with enteredInitials and score
-    // var storedInitials = JSON.parse(localStorage.getItem('initials')) || [];
-    // console.log(storedInitials);
     for (i = 0; i < storedInitials.length; i++) {
         var hsInfo = storedInitials[i];
         var list = document.createElement("li");
