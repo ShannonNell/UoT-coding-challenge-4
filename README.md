@@ -14,11 +14,13 @@ Done as a challenge for UoT's Coding Bootcamp.
 
 ## Usage
 To test knowledge on JavaScript fundamentals.
-![screenshotHere](link to screenshot)
+
+![Quiz Screenshot](assets/images/QuizScreenshot.png)
 
 ## Links
 ### Deployed Quiz:
 * [Quiz](https://shannonnell.github.io/UoT-coding-challenge-4/)
+
 ### Links that helped:
 * [LocalStorage Guide](https://blog.logrocket.com/localstorage-javascript-complete-guide/#clear)
 * [LocalStorage Youtube](https://www.youtube.com/watch?v=DFhmNLKwwGw)
@@ -29,7 +31,7 @@ To test knowledge on JavaScript fundamentals.
 * JavaScript
 
 ## Credits
-* Completed by: [Nell-GitHub](https://github.com/ShannonNell)
+* Completed by: [Nell - GitHub](https://github.com/ShannonNell)
 
 ## Challenge Guidelines
 ### Task:
