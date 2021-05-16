@@ -81,6 +81,7 @@ var timeInterval;
 var timeLeft = timerEl;
 var lastQuest = questions.length - 1;
 var currentQuest = 0;
+var storedInitials;//don't know if I need this or not
 
 
 // start quiz function
@@ -197,6 +198,20 @@ function gameOver() {
     });
 };
 
+
+//clear button clicked
+clearBtn.addEventListener('click', function() {
+    highscoresInfo.textContent = '';
+    localStorage.clear();
+    console.log('clear local storage');
+})
+
+//Go back button clicked
+goBackBtn.addEventListener('click', function() {
+    startQuiz();
+    timerEl.style.display = 'block';
+})
+
 //view high scores 
 highscoresEl.addEventListener('click', function(){
     highscoresSec();
@@ -217,26 +232,19 @@ var highscoresSec = function() {
     timerEl.style.display = 'none';
 
     highscoresDiv.style.display = 'block';
-
-    for (i = 0; i < storedInitials.length; i++) {
-        var hsInfo = storedInitials[i];
-        var list = document.createElement("li");
-        list.textContent = hsInfo;
-        highscoresInfo.appendChild(list);
-    }
-
-    //Go back button clicked
-    goBackBtn.addEventListener('click', function() {
-        startQuiz();
-        timerEl.style.display = 'block';
-    })
-
-    //clear button clicked
-    clearBtn.addEventListener('click', function() {
-        localStorage.clear();
-        highscoresInfo.textContent = '';
-        console.log('clear local storage');
-    })
+    
+    // check if anything stored in localStorage
+    if(localStorage.getItem('score') === null) {
+        list.textContent = '';
+    } else {
+        //loop through new list elements/highscores
+        for (i = 0; i < storedInitials.length; i++) {
+            var list = document.createElement("li");
+            var hsInfo = storedInitials[i];
+            list.textContent = hsInfo;
+            highscoresInfo.appendChild(list);
+        }
+    };    
 } 
 
 startQuiz();
