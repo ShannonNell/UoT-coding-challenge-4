@@ -81,8 +81,6 @@ var timeInterval;
 var timeLeft = timerEl;
 var lastQuest = questions.length - 1;
 var currentQuest = 0;
-var storedInitials;//don't know if I need this or not
-
 
 // start quiz function
 function startQuiz() { 
@@ -177,33 +175,32 @@ function gameOver() {
     finishGame.style.display = 'block';
     finishedText.textContent = 'All done!';
     finalScoreInfo.textContent = 'Your final score is ' + timeLeft;
-
-    // When game over, save initials and score
-    submitBtn.addEventListener('click', function(event) {
-        event.preventDefault(); 
-        var enteredInitials = initialsInput.value;
-
-        clearInterval(timeInterval);
-
-        if (enteredInitials) {
-            storedInitials.push(enteredInitials + ' - ' + timeLeft);
-            console.log(storedInitials);
-
-            localStorage.setItem('score', JSON.stringify(storedInitials));
-            highscoresSec();
-        }
-        else if (enteredInitials === '' || enteredInitials === null) {
-            alert('Please enter your initials!');
-        }
-    });
 };
 
+// When game over, save initials and score
+submitBtn.addEventListener('click', function(event) {
+    event.preventDefault(); 
+    var enteredInitials = initialsInput.value;
+
+    clearInterval(timeInterval);
+
+    if (enteredInitials) {
+        var storedInitials = JSON.parse(localStorage.getItem('score')) || [];
+
+        storedInitials.push(enteredInitials + ' - ' + timeLeft);
+
+        localStorage.setItem('score', JSON.stringify(storedInitials));
+        highscoresSec();
+    }
+    else if (enteredInitials === '' || enteredInitials === null) {
+        alert('Please enter your initials!');
+    }
+});
 
 //clear button clicked
 clearBtn.addEventListener('click', function() {
     highscoresInfo.textContent = '';
     localStorage.clear();
-    console.log('clear local storage');
 })
 
 //Go back button clicked
@@ -216,10 +213,6 @@ goBackBtn.addEventListener('click', function() {
 highscoresEl.addEventListener('click', function(){
     highscoresSec();
 });
-
-//Highscore loaded with enteredInitials and score
-var storedInitials = JSON.parse(localStorage.getItem('score')) || [];
-console.log(storedInitials);
 
 // highscores Section
 var highscoresSec = function() {
@@ -237,6 +230,11 @@ var highscoresSec = function() {
     if(localStorage.getItem('score') === null) {
         list.textContent = '';
     } else {
+        //clear HTML before adding more onto list
+        highscoresInfo.textContent = '';
+
+        //find storedInitials in localStorage
+        var storedInitials = JSON.parse(localStorage.getItem('score')) || []; 
         //loop through new list elements/highscores
         for (i = 0; i < storedInitials.length; i++) {
             var list = document.createElement("li");
@@ -244,7 +242,7 @@ var highscoresSec = function() {
             list.textContent = hsInfo;
             highscoresInfo.appendChild(list);
         }
-    };    
+    };   
 } 
 
 startQuiz();
